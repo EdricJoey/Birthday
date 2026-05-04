@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Happy Birthday, Sayangku</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  min-height:100vh;
+  font-family:Georgia,serif;
+  background:linear-gradient(135deg,#efe1cf,#d8c0a6,#f7efe5);
+  color:#4b3528;
+}
+
+.start-screen{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.letter-card{
+  background:rgba(255,248,238,0.9);
+  border-radius:30px;
+  padding:40px;
+  max-width:420px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.2);
+}
+
+button{
+  margin-top:20px;
+  padding:12px 24px;
+  border:none;
+  border-radius:999px;
+  background:#8b674f;
+  color:white;
+  cursor:pointer;
+}
+
+.main-content{display:none;padding:40px;}
+
+.wish{
+  font-size:20px;
+  margin:28px 0;
+  opacity:0;
+  transform:translateY(20px);
+  transition:all .8s ease;
+}
+
+.wish.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.wish.typing::after{
+  content:"|";
+  animation:blink .8s infinite;
+}
+
+@keyframes blink{
+  50%{opacity:0;}
+}
+
+.final{
+  text-align:center;
+  font-size:28px;
+  margin-top:40px;
+}
+</style>
+</head>
+
+<body>
+
+<section class="start-screen" id="startScreen">
+  <div class="letter-card">
+    <h1>Untuk Elen</h1>
+    <p>aku punya sesuatu untuk kamu</p>
+    <button onclick="openLetter()">Press the letter</button>
+  </div>
+</section>
+
+<main class="main-content" id="mainContent">
+
+<p class="wish">Happy birthday, sayangku.</p>
+
+<p class="wish">Selamat ulang tahun yang ke 28, cintaku.
+Hari ini bukan sekadar pertambahan angka, tapi tentang bagaimana semesta diam-diam merayakan hadirnya kamu.</p>
+
+<p class="wish">Aku berdoa, semoga semua impianmu pelan-pelan datang tanpa ragu, dan hidupmu selalu dipenuhi hal baik.</p>
+
+<p class="wish">AMIIIINNNN</p>
+
+<p class="wish">Terima kasih karena sudah hadir dalam hidupku.
+Sejak ada kamu, semuanya terasa lebih hidup dan punya arah.</p>
+
+<p class="wish">Terima kasih karena selalu ada, bahkan saat aku tidak mudah dimengerti.</p>
+
+<p class="wish">Di hari spesialmu ini, aku cuma mau kamu bahagia.
+Karena senyummu adalah hal paling penting buat aku.</p>
+
+<p class="wish">Aku harap kita akan terus seperti ini, berjalan berdampingan tanpa saling melepaskan.</p>
+
+<p class="wish">Terima kasih, karena sudah jadi rumah.</p>
+
+<p class="wish final">Love you, always.</p>
+
+</main>
+
+<audio id="song" src="song.mp3"></audio>
+
+<script>
+function openLetter(){
+  document.getElementById("startScreen").style.display="none";
+  document.getElementById("mainContent").style.display="block";
+
+  const song=document.getElementById("song");
+  song.play();
+
+  revealText();
+}
+
+function revealText(){
+  const wishes=document.querySelectorAll(".wish");
+  let i=0;
+
+  function show(){
+    if(i>=wishes.length) return;
+
+    let el=wishes[i];
+    el.classList.add("visible","typing");
+
+    setTimeout(()=>{
+      el.classList.remove("typing");
+      i++;
+      setTimeout(show,1500);
+    },2500);
+  }
+
+  show();
+}
+</script>
+
+</body>
+</html>
